@@ -2,13 +2,6 @@ let carouselIndex = 0;
 let tilesCount = 0;
 const tileWidth = 345;
 
-//create function with (direction) as parameter
-//get container by ID
-//get visible tiles with math.floor
-
-//set carousel index limit - math.max between 0 and math.min (which is between totalTiles - visibleTiles + 1 and index + direction)
-//scroll container to correct position
-
 const scroll = (direction) => {
   console.log(tilesCount);
   const container = document.getElementById("productList");
@@ -28,20 +21,6 @@ document
   .addEventListener("click", () => scroll(-1));
 
 const order = ["XXS", "XS", "S", "M", "L", "XL", "XXL"];
-
-// create customSizeSort function with (a, b) passed in
-// create consts for if size a/b is range with includes
-
-// if both are numbers
-// create consts for first number of a/b
-// ternaries checking if
-// 1. both are ranges
-// 2. a is range
-// 3. b is range
-// else return a - b
-
-// if else for 'both are numbers'
-// return index of order for a/b as a - b
 
 const customSizeSort = (a, b) => {
   const isRangeSizeA = a.includes("/");
@@ -68,9 +47,6 @@ const customSizeSort = (a, b) => {
   );
 };
 
-//create fetchData as an async function
-//create response = awaited fetch of data
-// return response.json
 const fetchData = async () => {
   const response = await fetch(
     "https://storage.googleapis.com/hush-dev-public/hush.json"
@@ -78,11 +54,6 @@ const fetchData = async () => {
   return response.json();
 };
 
-//create createOption function passing in (value)
-// create option element as const
-//set option value
-//set option textContent
-//return option
 const createOption = (value) => {
   const option = document.createElement("option");
   option.value = value;
@@ -90,32 +61,11 @@ const createOption = (value) => {
   return option;
 };
 
-//create getProductSizeByColor function passing in (productData, color)
-//return as an array
-//pass into array a new set
-//containing product data - filtered for item color, and - mapped to display item size
-
 const getProductSizesByColor = (productData, color) => [
   ...new Set(
     productData.filter((item) => item.color === color).map((item) => item.size)
   ),
 ];
-
-//create updateColor func passing in 4 parameters - 2 of WHAT you wanna change, 1 where, and 1 of info
-//create selectedColor const
-//create sizesForSelectedColor const
-//sort sizes by custom sort
-
-//query select the product image text inside product div, and set text content to available sizes, joined with ", "
-
-//create currentSize const before clearing the current size html content
-//create new size options for size dropdown based on selected color
-
-//create var to find highest priority product via filter and reduce
-//set the default size to the highest priority product if it exists, else set to [0] in sizes
-//if current size is included in list of sizes, set it to that, else set to default size
-
-//call update size and pass in 4 original parameters
 
 const updateColor = (productDiv, colorSelect, sizeSelect, productData) => {
   const selectedColor = colorSelect.value;
@@ -154,11 +104,6 @@ const updateColor = (productDiv, colorSelect, sizeSelect, productData) => {
   updateSize(productDiv, colorSelect, sizeSelect, productData);
 };
 
-//create updateSize function - passing in 2 of WHAT you wanna change, 1 where, and 1 of info
-//const for selected color and for selected size
-//const using 'find' for selected product &&
-
-//if selected product exists, change product image src and alt to selected product
 const updateSize = (productDiv, colorSelect, sizeSelect, productData) => {
   const selectedColor = colorSelect.value;
   const selectedSize = sizeSelect.value;
@@ -172,36 +117,6 @@ const updateSize = (productDiv, colorSelect, sizeSelect, productData) => {
     productImage.alt = selectedProduct.imageAlt;
   }
 };
-
-//create displayProduct function - passing in productDiv and Data
-//create const of colorGroups using reduce, returning an object of color arrays if push
-//create bestColor, highestScore and maxSizes consts all @ base or lower
-
-//create a for in loop of each color in colorGroups
-//create group const
-//create totalPriority const with reduce
-//if total priority > highest score OR they have same priority, but larger maxSizes, reassign all 3 vars above
-
-//if product only has 1 color, select that color as best
-
-//create bestGroup const
-//sort group high to low
-//set selected product to highest prio
-
-//create sizes const filter map
-//sort sizes
-
-//set productDiv innerHTML on selected product
-
-//query select both selects and add to cart button
-//add to cart event listener alert selectedProduct size color and name
-
-//create const colors - list of all colors in data
-
-//create color and size option in select for each available
-//set color select to best color
-
-//colorselect and size add event listeners
 
 const displayProduct = (productDiv, productData) => {
   const colorGroups = productData.reduce((acc, item) => {
@@ -218,9 +133,6 @@ const displayProduct = (productDiv, productData) => {
     const group = colorGroups[color];
     const totalPriority = group.reduce((acc, item) => acc + item.priority, 0);
 
-    // Choose the color with the highest total priority.
-    // If total priority is equal, choose the color with more sizes.
-    // If the number of sizes is also equal, choose the first one.
     if (
       totalPriority > highestScore ||
       (totalPriority === highestScore && group.length > maxSizes)
@@ -301,23 +213,6 @@ const displayProduct = (productDiv, productData) => {
     updateSize(productDiv, colorSelect, sizeSelect, productData)
   );
 };
-
-//call fetchData
-//then arrow function passing in products
-//create const groupedProducts = reduced products
-
-//assign tilesCount
-
-//sort grouped products
-// - const average prio A/B
-// - if prios are not the same, sort high to low
-// - const number of sizes A/B
-// - sort high to low
-
-//then for each product group, make a tile div classname x, and append it to document
-//run display product - pass in div and group
-
-//catch any errors
 
 fetchData()
   .then((products) => {

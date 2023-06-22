@@ -45,7 +45,7 @@ body {
   white-space: nowrap;
   display: flex;
   overflow-x: auto;
-  overflow: hidden;
+  /* overflow: hidden; */
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
