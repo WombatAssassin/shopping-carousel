@@ -1,0 +1,151 @@
+/* GENERAL STYLES  */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* MAIN BODY  */
+
+body {
+  font-family: "Arimo", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-title {
+  margin: 1em;
+  font-size: 1.125em;
+}
+/* CAROUSEL */
+
+#carouselContainer {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-list {
+  white-space: nowrap;
+  display: flex;
+  overflow-x: auto;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-button {
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.3);
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  text-align: center;
+}
+
+.scroll-button:hover {
+  cursor: pointer;
+}
+
+#scrollLeft {
+  left: 20px;
+}
+
+#scrollRight {
+  right: 20px;
+}
+
+/* CAROUSEL TILE */
+
+.product-tile {
+  flex: 0 0 auto;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+.product-image-container {
+  position: relative;
+  color: black;
+}
+
+.product-image-text {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-weight: bold;
+  font-size: 0.75em;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 3px;
+  margin: 2px;
+}
+
+.product-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+}
+
+.product-bottom h2 {
+  font-size: 1em;
+  margin: 0.75em 0 0.25em 0;
+}
+
+.add-to-cart-button {
+  font-family: "Arimo", sans-serif;
+  padding: 1rem 2rem;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.add-to-cart-button:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  #scrollLeft {
+    left: 50px;
+  }
+  #scrollRight {
+    right: 50px;
+  }
+
+  .product-tile h2 {
+    font-size: 1.1em;
+  }
+
+  .scroll-button {
+    height: 3em;
+    width: 3em;
+  }
+}
